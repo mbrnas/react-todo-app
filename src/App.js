@@ -25,22 +25,39 @@ function App() {
 
   return (
     <div className="App">
-      <div className="addTask">
-        <input onChange={handleChange} />
-        <button onClick={addTask}>Add Task</button>
-      </div>
-      <div className="list">
-        {todoList.map((task) => {
-          return (
-            <div>
-              <h1>{task.taskName}</h1>
-              <button onClick={() => deleteTask(task.id)}>X</button>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter a task"
+                onChange={handleChange}
+              />
+              <button className="btn btn-primary" onClick={addTask}>
+                Add Task
+              </button>
             </div>
-          );
-        })}
+            <ul className="list-group">
+              {todoList.map((task) => (
+                <li className="list-group-item" key={task.id}>
+                  {task.taskName}
+                  <button
+                    className="btn btn-danger float-end"
+                    onClick={() => deleteTask(task.id)}
+                  >
+                    X
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
+  
 }
 
 export default App;
